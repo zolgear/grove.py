@@ -72,6 +72,7 @@ setup(
             'grove_imu_9dof_icm20600_ak09918=grove.grove_imu_9dof_icm20600_ak09918:main',
             'grove_lcd_1.2inches=grove.display.sh1107g:main',
             'grove_led=grove.grove_led:main',  
+            'grove_ledbar=grove.grove_ledbar:main',
             'grove_light_sensor_v1_2=grove.grove_light_sensor_v1_2:main',
             'grove_loudness_sensor=grove.grove_loudness_sensor:main',
             'grove_mech_keycap=grove.grove_mech_keycap:main',
