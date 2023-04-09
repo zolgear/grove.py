@@ -40,13 +40,13 @@ if is_pi():
 
 setup(
     name='grove.py',
-    version='0.6',
+    version='0.7',
     description='Python library for Seeedstudio Grove devices',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    author='Yihui Xiong',
-    author_email='yihui.xiong@seeed.cc',
-    url='https://github.com/seeed-studio/grove.py',
+    author='Toru Suzuki',
+    author_email='zolgear@gmail.com',
+    url='https://github.com/zolgear/grove.py',
     packages=find_packages(include=['grove']),
     include_package_data=True,
     install_requires=requirements,
