@@ -53,6 +53,9 @@ class GroveLedBar(object):
 
     @property
     def reverse(self):
+        '''
+        led bar direction for level values.
+        '''
         return self._reverse
     
     @reverse.setter
@@ -62,9 +65,31 @@ class GroveLedBar(object):
         self._reverse = value
 
     def level(self, value, brightness=255):
+        '''
+        select a level to light the led bar.
+        value: number of level, 0 - 10.
+        brightness:
+            8-bit grayscale mode: 0 - 127 (128 - 255)
+        '''
+        # print('level:{0:2} ['.format(value), end='')
         self._begin()
         for i in range(9,-1,-1) if self._reverse else range(10):
             self._write16(brightness if value > i else 0)
+            # print('{0}:{1:3}'.format(i, brightness if value > i else 0), end=', ')
+        self._end()
+        # print(']')
+
+    def bits(self, val, brightness=255):
+        val &= 0x3FF
+        self._begin()
+        for i in range(9,-1,-1) if self._reverse else range(10):
+            self._write16(brightness if (val >> i) & 1 else 0)
+        self._end()
+
+    def bytes(self, buf):
+        self._begin()
+        for i in range(9,-1,-1) if self._reverse else range(10):
+            self._write16(buf[i])
         self._end()
 
     def _begin(self):
