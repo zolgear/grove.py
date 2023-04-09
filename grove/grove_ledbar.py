@@ -30,9 +30,9 @@ Examples:
 import time
 from grove.gpio import GPIO
 
-__all__ = ['GroveLedBar', 'GPIO']
+__all__ = ['GroveLedBar']
 
-class GroveLedBar(GPIO):
+class GroveLedBar(object):
     '''
     Class for Grove - LED Bar
 
@@ -51,9 +51,14 @@ class GroveLedBar(GPIO):
         self._dio.write(0)
         self._clk.write(0)
 
-    def reverse(self, value=None):
-        if value is None:
-            return self._reverse
+    @property
+    def reverse(self):
+        return self._reverse
+    
+    @reverse.setter
+    def reverse(self, value: bool):
+        if type(value) is not bool:
+            raise TypeError('reverse must be bool')
         self._reverse = value
 
     def level(self, value, brightness=255):
@@ -115,7 +120,7 @@ def main():
             ledbar.level(i)
             time.sleep(.5)
         
-        ledbar.reverse(not ledbar.reverse())
+        ledbar.reverse = not ledbar.reverse
         time.sleep(1)
 
 
